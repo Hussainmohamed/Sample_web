@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riyas Travels</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        h4#trip-text {
+    background: #9b9bfd;
+    padding: 10px;
+}
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #section-to-print, #section-to-print * {
+    visibility: visible;
+  }
+  #section-to-print {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-6">
+                    <h3 class="text-center">Travels Calculation</h3>
+                    <div class="form-group">
+                        <label>Days</label>
+                        <input type="number" class="form-control" id="days" placeholder="Enter Days" />
+                    </div>
+                    <div class="form-group">
+                        <label>Km</label>
+                        <input type="number" class="form-control" id="km" placeholder="Enter Kilometers" />
+                    </div>
+                    <div class="form-group">
+                        <label>Per Km Price</label>
+                        <input type="number" class="form-control" id="per-km" placeholder="Enter Per km Price" />
+                    </div>
+                    <div class="form-group">
+                        <label>Per Day Allowed</label>
+                        <input type="number" class="form-control" id="day-allowed" placeholder="Enter Days" />
+                    </div>
+                    <div class="form-group">
+                        <label>Beta </label>
+                        <input type="number" class="form-control" id="beta" placeholder="Enter Driver Beta" />
+                    </div>
+                    <div class="form-group">
+                        <label>Toll & Park</label>
+                        <input type="number" class="form-control" id="toll" placeholder="Enter Toll & Park" />
+                    </div>
+                    <div class="form-group">
+                        <label>Permit</label>
+                        <input type="number" class="form-control" id="permit" placeholder="Enter Permit" />
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-info" id="calculate">Calculate</button>
+                        <button class="btn btn-primary" id="btnExport">print</button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                </div>
+            </div>
+            <div class="row" id="print-table">
+                <div class="col-md-12">
+                    <h4 class="text-center" id="trip-text">5 Days Trip</h4>
+                    <table class="table table-responsive">
+                        <tr>
+                          <th class="text-center">Innova(7+1)(approx.cal)</th>  
+                          <th>Amount</th>
+                        </tr>
+                        <tr>
+                            <td id="text1">5 days(5*3)=1500km</td>
+                            <td id="ans1"></td>
+                        </tr>
+                        <tr>
+                            <td id="text2">18000*18</td>
+                            <td id="ans2">27000</td>
+                        </tr>
+                        <tr>
+                            <td id="text3">Driver Beta</td>
+                            <td id="ans3">1000</td>
+                        </tr>
+                        <tr>
+                            <td id="text4">Toll</td>
+                            <td id="ans4">300</td>
+                        </tr>
+                        <tr>
+                            <td id="text5">Permit</td>
+                            <td id="ans5">2000</td>
+                        </tr>
+                        <tr>
+                            <td id="text6">Total</td>
+                            <td id="ans6">3000</td>
+                        </tr>                        
+                    </table>
+                    <h4 class="text-center" id="trip-text">Riyas Travels</h4>
+
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+    
+</body>
+</html>
+<script>
+    $('#calculate').on("click",function(){
+       var days=$('#days').val();
+       var km=$('#km').val();
+       var dayallwd=$('#day-allowed').val();
+       var beta=$('#beta').val();
+       var toll=$('#toll').val();
+       var permit=$('#permit').val();
+       var perkm=$('#per-km').val();
+
+       $('#text1').text(days+" days("+days+"* 300)="+(days*300));
+       $('#text2').text(km+"*"+perkm);
+       $('#ans2').text(km*perkm);
+       $('#text3').text("Driver Beta("+days+"*"+beta+")");
+       $('#ans3').text(days*beta);
+       $('#text4').text("Toll Plaza & Parking Charge");
+       $('#ans4').text(toll);
+       $('#ans5').text(permit);
+       $('#trip-text').text(days+" Days Trip");
+       var a=(km*perkm)+(days*beta);
+       var b=(parseInt(toll)+parseInt(permit));
+       var total=a+b;
+      
+       $('#ans6').text(total);
+       
+
+    })
+
+    
+$("#btnExport").click(function(event) {
+    var html='';
+          
+           
+            tab= document.getElementById('print-table');
+            var style='<html><head><style>.text-center{    margin-left: 40%;}table { margin-left:18%}td.text-right.text-bold{padding:3px;}td.text-center{padding:3px;}tr.line{border-top: 2px dotted black;}</style></head>'; 
+            var win = window.open('', '_blank', 'scrollbars=1,resizable=1,height=300,width=450');
+           
+            win.document.write(style);
+            // win.document.write(html);
+            win.document.write(tab.outerHTML);
+            win.document.close();
+            win.print();
+ 
+});
+</script>
