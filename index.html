@@ -37,8 +37,28 @@
                 <div class="col-md-6">
                     <h3 class="text-center">Travels Calculation</h3>
                     <div class="form-group">
+                        <label>Select Car</label>
+                        <select id="car" class="form-control">
+                            <option value="">Select Car</option>
+                            <option>INNOVA</option>
+                            <option>ERTIGA</option>
+                            <option>DEZIRE</option>
+                            <option>TEMP</option>
+                            <option>TOURISTER</option>
+                            <option>COACH</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label>Days</label>
                         <input type="number" class="form-control" id="days" placeholder="Enter Days" />
+                    </div>
+                    <div class="form-group">
+                        <label>Arrival</label>
+                        <input type="text" class="form-control" id="from" placeholder="Enter Arrival" />
+                    </div>
+                    <div class="form-group">
+                        <label>Deprature</label>
+                        <input type="text" class="form-control" id="to" placeholder="Enter Deprature" />
                     </div>
                     <div class="form-group">
                         <label>Km</label>
@@ -47,6 +67,14 @@
                     <div class="form-group">
                         <label>Per Km Price</label>
                         <input type="number" class="form-control" id="per-km" placeholder="Enter Per km Price" />
+                    </div>
+                    <div class="form-group">
+                        <label>Room No</label>
+                        <input type="number" class="form-control" id="roomno" placeholder="Enter Days" />
+                    </div>
+                    <div class="form-group">
+                        <label>Room Price</label>
+                        <input type="number" class="form-control" id="room-price" placeholder="Enter Days" />
                     </div>
                     <div class="form-group">
                         <label>Per Day Allowed</label>
@@ -77,8 +105,20 @@
                     <h4 class="text-center" id="trip-text">5 Days Trip</h4>
                     <table class="table table-responsive">
                         <tr>
-                          <th class="text-center">Innova(7+1)(approx.cal)</th>  
+                          <th id="car-tle" class="text-center"></th>  
                           <th>Amount</th>
+                        </tr>
+                        <tr>
+                            <td>Arrival</td>
+                            <td id="arival"></td>
+                        </tr>
+                        <tr>
+                            <td>Deprature</td>
+                            <td id="dep"></td>
+                        </tr>
+                        <tr>
+                            <td>Room No</td>
+                            <td id="rno"></td>
                         </tr>
                         <tr>
                             <td id="text1">5 days(5*3)=1500km</td>
@@ -101,8 +141,12 @@
                             <td id="ans5">2000</td>
                         </tr>
                         <tr>
+                            <td>Room Price</td>
+                            <td id="rpce"></td>
+                        </tr>
+                        <tr>
                             <td id="text6">Total</td>
-                            <td id="ans6">3000</td>
+                            <td ><strong id="ans6">3000</strong></td>
                         </tr>                        
                     </table>
                     <h4 class="text-center" id="trip-text">Riyas Travels</h4>
@@ -126,6 +170,16 @@
        var permit=$('#permit').val();
        var perkm=$('#per-km').val();
 
+       var from=$('#from').val();
+       var to=$('#to').val();
+       var roomno=$('#roomno').val();
+       var roomprice=$('#room-price').val();
+       var car=$('#car').val();
+
+       if(permit==''){
+        permit=0;
+       }
+
        $('#text1').text(days+" days("+days+"* 300)="+(days*300));
        $('#text2').text(km+"*"+perkm);
        $('#ans2').text(km*perkm);
@@ -134,9 +188,15 @@
        $('#text4').text("Toll Plaza & Parking Charge");
        $('#ans4').text(toll);
        $('#ans5').text(permit);
+       $('#arival').text(from);
+       $('#dep').text(to);
+       $('#rno').text(roomno);
+       $('#rpce').text(roomprice);
+       $('#car-tle').text(car);
        $('#trip-text').text(days+" Days Trip");
        var a=(km*perkm)+(days*beta);
        var b=(parseInt(toll)+parseInt(permit));
+
        var total=a+b;
       
        $('#ans6').text(total);
