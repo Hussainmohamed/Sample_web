@@ -25,6 +25,13 @@
     left: 0;
     top: 0;
   }
+
+
+}
+.txt {
+    background: #c9d4f8;
+    color: black;
+    font-weight: 600;
 }
     </style>
 </head>
@@ -105,48 +112,48 @@
                     <h4 class="text-center" id="trip-text">5 Days Trip</h4>
                     <table class="table table-responsive">
                         <tr>
-                          <th id="car-tle" class="text-center"></th>  
-                          <th>Amount</th>
+                          <th id="car-tle" class="text-center">INNOVA</th>  
+                          <th>Amount + Others</th>
                         </tr>
                         <tr>
                             <td>Arrival</td>
-                            <td id="arival"></td>
+                            <td id="arival" style="font-weight: 600;"></td>
                         </tr>
                         <tr>
                             <td>Deprature</td>
-                            <td id="dep"></td>
+                            <td id="dep" style="font-weight: 600;"></td>
                         </tr>
                         <tr>
                             <td>Room No</td>
-                            <td id="rno"></td>
+                            <td id="rno" style="font-weight: 600;"></td>
                         </tr>
                         <tr>
-                            <td id="text1">5 days(5*3)=1500km</td>
-                            <td id="ans1"></td>
+                            <td id="text1">5 days(5*300)=1500km</td>
+                            <td id="ans1" class="txt"></td>
                         </tr>
                         <tr>
-                            <td id="text2">18000*18</td>
-                            <td id="ans2">27000</td>
+                            <td id="text2">(Km*km\price) 18000*18</td>
+                            <td id="ans2" class="txt"></td>
                         </tr>
                         <tr>
                             <td id="text3">Driver Beta</td>
-                            <td id="ans3">1000</td>
+                            <td id="ans3" class="txt"></td>
                         </tr>
                         <tr>
                             <td id="text4">Toll</td>
-                            <td id="ans4">300</td>
+                            <td id="ans4" class="txt"></td>
                         </tr>
                         <tr>
                             <td id="text5">Permit</td>
-                            <td id="ans5">2000</td>
+                            <td id="ans5" class="txt"></td>
                         </tr>
                         <tr>
                             <td>Room Price</td>
-                            <td id="rpce"></td>
+                            <td id="rpce" class="txt"></td>
                         </tr>
                         <tr>
                             <td id="text6">Total</td>
-                            <td ><strong id="ans6">3000</strong></td>
+                            <td class="txt"><strong id="ans6" ></strong></td>
                         </tr>                        
                     </table>
                     <h4 class="text-center" id="trip-text">Riyas Travels</h4>
@@ -180,8 +187,9 @@
         permit=0;
        }
 
-       $('#text1').text(days+" days("+days+"* 300)="+(days*300));
+       $('#text1').text(days+" days("+days+"*"+dayallwd+")");
        $('#text2').text(km+"*"+perkm);
+       $('#ans1').text(days*dayallwd);
        $('#ans2').text(km*perkm);
        $('#text3').text("Driver Beta("+days+"*"+beta+")");
        $('#ans3').text(days*beta);
@@ -197,7 +205,7 @@
        var a=(km*perkm)+(days*beta);
        var b=(parseInt(toll)+parseInt(permit));
 
-       var total=a+b;
+       var total=a+b+parseInt(roomprice);
       
        $('#ans6').text(total);
        
